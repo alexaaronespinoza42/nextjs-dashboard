@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import postgres from 'postgres';
 import { invoices, customers, revenue, users } from '../lib/placeholder-data';
-
+export const runtime = 'nodejs';
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
 async function seedUsers(sql: postgres.Sql) {
