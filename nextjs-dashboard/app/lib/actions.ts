@@ -134,16 +134,21 @@ export async function authenticate(
   }
 }
 
-export async function deleteInvoice(id: string) {
+export async function deleteInvoice(formData: FormData) {
+  const id = formData.get('id');
+  if (typeof id !== 'string') {
+    // Aquí puedes lanzar error o manejarlo como gustes
+    return;
+  }
+
   try {
     await sql`DELETE FROM invoices WHERE id = ${id}`;
     revalidatePath('/dashboard/invoices');
   } catch (error) {
     console.error(error);
-    console.error(error);
-    return { message: 'Database Error: Failed to Delete Invoice.' };
   }
 }
+
 
 
 /* export async function deleteInvoice(id: string) {
